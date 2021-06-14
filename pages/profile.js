@@ -1,5 +1,5 @@
 import { Auth, Typography, Button } from "@supabase/ui";
-import { supabase } from '../api'
+import { supabase } from '../utils/supabaseClient'
 const { Text } = Typography
 
 function Profile(props) {
