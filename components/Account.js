@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import Avatar from './Avatar'
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true)
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
+
+  console.log({avatar_url})
 
   useEffect(() => {
     getProfile()
@@ -89,6 +92,14 @@ export default function Account({ session }) {
           onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
+      <Avatar
+        url={avatar_url}
+        size={150}
+        onUpload={(url) => {
+          setAvatarUrl(url)
+          updateProfile({ username, website, avatar_url: url })
+        }}
+      />
 
       <div>
         <button
